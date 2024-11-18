@@ -31,6 +31,9 @@
 #include "conf.h"
 #include "fbpad.h"
 #include "draw.h"
+#ifdef FBINK
+#include "eink.h"
+#endif
 
 #define CTRLKEY(x)	((x) - 96)
 #define POLLFLAGS	(POLLIN | POLLHUP | POLLERR | POLLNVAL)
@@ -47,10 +50,7 @@ static int ctag;		/* current tag */
 static int ltag;		/* the last tag */
 static int exitit;
 static int hidden;		/* do not touch the framebuffer */
-static int locked;
 static int taglock;		/* disable tag switching */
-static char pass[1024];
-static int passlen;
 static int cmdmode;		/* execute a command and exit */
 
 static int readchar(void)
@@ -231,18 +231,6 @@ static void directkey(void)
 	char *mail[32] = MAIL;
 	char *editor[32] = EDITOR;
 	int c = readchar();
-	if (PASS && locked) {
-		if (c == '\r') {
-			pass[passlen] = '\0';
-			if (!strcmp(PASS, pass))
-				locked = 0;
-			passlen = 0;
-			return;
-		}
-		if (isprint(c) && passlen + 1 < sizeof(pass))
-			pass[passlen++] = c;
-		return;
-	}
 	if (c == ESC) {
 		switch ((c = readchar())) {
 		case 'c':
@@ -284,10 +272,6 @@ static void directkey(void)
 			term_colors(CLRFILE);
 			pad_font(FR, FI, FB);
 			term_redraw(1);
-			return;
-		case CTRLKEY('l'):
-			locked = 1;
-			passlen = 0;
 			return;
 		case CTRLKEY('o'):
 			taglock = 1 - taglock;
@@ -444,6 +428,9 @@ int main(int argc, char **argv)
 		terms[i] = term_make();
 	write(1, hide, strlen(hide));
 	signalsetup();
+#ifdef FBINK
+	fbpad_fbink_start();
+#endif
 	fcntl(0, F_SETFL, fcntl(0, F_GETFL) | O_NONBLOCK);
 	while (args[0] && args[0][0] == '-')
 		args++;
@@ -452,6 +439,9 @@ int main(int argc, char **argv)
 	for (i = 0; i < NTERMS; i++)
 		term_free(terms[i]);
 	pad_free();
+#ifdef FBINK
+	fbpad_fbink_stop();
+#endif
 	scr_done();
 	fb_free();
 	return 0;

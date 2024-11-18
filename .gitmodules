@@ -1,0 +1,6 @@
+[submodule "FBInk"]
+	path = FBInk
+	url = https://github.com/NiLuJe/FBInk/
+[submodule "fbpad_mkfn"]
+	path = fbpad_mkfn
+	url = https://github.com/freebendy/fbpad_mkfn
