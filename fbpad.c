@@ -31,7 +31,7 @@
 #include "conf.h"
 #include "fbpad.h"
 #include "draw.h"
-#ifdef FBINK
+#ifdef EINK
 #include "eink.h"
 #endif
 
@@ -428,7 +428,8 @@ int main(int argc, char **argv)
 		terms[i] = term_make();
 	write(1, hide, strlen(hide));
 	signalsetup();
-#ifdef FBINK
+#ifdef EINK
+        printf("Using eink.\n");
 	fbpad_fbink_start();
 #endif
 	fcntl(0, F_SETFL, fcntl(0, F_GETFL) | O_NONBLOCK);
@@ -439,7 +440,7 @@ int main(int argc, char **argv)
 	for (i = 0; i < NTERMS; i++)
 		term_free(terms[i]);
 	pad_free();
-#ifdef FBINK
+#ifdef EINK
 	fbpad_fbink_stop();
 #endif
 	scr_done();

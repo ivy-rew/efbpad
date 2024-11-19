@@ -5,7 +5,7 @@
 #include "conf.h"
 #include "draw.h"
 #include "fbpad.h"
-#ifdef FBINK
+#ifdef EINK
 #include "eink.h"
 #endif
 
