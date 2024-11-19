@@ -1,0 +1,22 @@
+- kbreader fix: keyboard events (control keycode 29, esc keycode 1) eaten by kobo for an unknown reason
+- fpad: add behavior: if stdin closes kill fbpad    
+
+- fbpadmanager: 
+  - startup:
+    - find keyboard /dev/input/event##, if none are found then shutdown
+    - kill kobo interface
+    - spawn `fbpad < kbreader $kbdev`
+    - when fbpad dies, cleanup
+  - shutdown:
+    - killall kbreader
+    - retsart kobo interface
+    - exit
+
+- Additional functionality:
+  - fbpad pipe control 
+    - each mainloop fbpad does a nonblocking read of 1 u8 b from /tmp/kbreader_$uid
+    - if 1 byte is read the next ttyinput will call handleSyskey on b
+    - 0 syskey is do nothing
+  - kbreader pipe control
+    - special behavior: if C-` submit the next char to /tmp/kbreader_$uid
+    - if C-` is pressed again submit 0 to /tmp/kbreader_$uid and C-` to stdout
