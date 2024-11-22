@@ -11,7 +11,7 @@
 #define TERM		"linux"
 
 /* tinyfont files for regular, italic, and bold fonts */
-#define FR		"/home/user/r.tf" // "/mnt/onboard/tf/r.tf"
+#define FR		"/mnt/onboard/tf/r.tf" // "/home/user/r.tf"
 #define FI		NULL
 #define FB		NULL
 
