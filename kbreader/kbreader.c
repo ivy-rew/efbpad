@@ -5,8 +5,6 @@
 #include "_keymap.h"
 
 static struct input_event ev;
-static int fd;
-static int fd_status = 0;
 static ssize_t nread;
 
 int main(int argc, char* argv[]) {

@@ -261,10 +261,10 @@ struct KbState kbstate = {0};
 static unsigned int idx = 0;
 unsigned int get_keymap_idx(void) {
 	idx = 0;
-	idx += (kbstate.ctrl << 0);
-	idx += (kbstate.shift << 1);
-	idx += (kbstate.alt << 2);
-	idx += (kbstate.caps << 3);
+	idx += (kbstate.ctrl << 3);
+	idx += (kbstate.shift << 2);
+	idx += (kbstate.alt << 1);
+	idx += (kbstate.caps << 0);
 	return idx;
 }
 

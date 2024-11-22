@@ -320,9 +320,9 @@ static unsigned int idx = 0;
 unsigned int get_keymap_idx(void) {{
 \tidx = 0;\n''', end='')
 for imod, mod in enumerate(dict_mods.keys()):
-    print(f'\tidx += (kbstate.{mod} << {imod});\n', end='')
+    print(f'\tidx += (kbstate.{mod} << {n_dims-imod-1});\n', end='')
 for itog, tog in enumerate(dict_toggles.keys()):
-    print(f'\tidx += (kbstate.{tog} << {n_mods+itog});\n', end='')
+    print(f'\tidx += (kbstate.{tog} << {n_dims-n_mods-itog-1});\n', end='')
 print('\treturn idx;\n', end='');
 print(f'}}\n', end='')
 
