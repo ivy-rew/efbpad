@@ -1,12 +1,13 @@
 #include <stdio.h>
+#include <time.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <linux/input.h>
 #include "_keymap.h"
 
+
 static struct input_event ev;
 static ssize_t nread;
-
 int main(int argc, char* argv[]) {
   if(argc < 2) return -1;
   setbuf(stdout, NULL);
@@ -19,7 +20,9 @@ int main(int argc, char* argv[]) {
       return -1;
     }
     if(!(ev.type == EV_KEY)) continue; 
-    if(ev.value == 1 || ev.value == 2) printf("%s", key_press(ev.code));
+    if(ev.value == 1 || ev.value == 2) {
+      printf("%s", key_press(ev.code));
+    }
     else if(ev.value == 0) key_release(ev.code);
   }
   close(fd);

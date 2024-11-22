@@ -231,6 +231,7 @@ static void directkey(void)
 	char *mail[32] = MAIL;
 	char *editor[32] = EDITOR;
 	int c = readchar();
+#ifdef FBPAD_ESC
 	if (c == ESC) {
 		switch ((c = readchar())) {
 		case 'c':
@@ -297,6 +298,7 @@ static void directkey(void)
 				term_send(ESC);
 		}
 	}
+#endif
 	if (c != -1 && tmain())
 		term_send(c);
 }

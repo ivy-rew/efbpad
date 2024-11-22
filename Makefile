@@ -12,9 +12,9 @@ EINK_TARGETS = libfbink fbpad kbreader/kbreader fbpad_mkfn/mkfn
 EINK_OBJS = eink.o
 EINK_CFLAGS =-DEINK -std=gnu99 -pthread -I$(shell pwd)/build/include
 EINK_LDFLAGS = -pthread -L$(shell pwd)/build/lib -lfbink
-CFLAGS+=$(EINK_CFLAGS)
-LDFLAGS+=$(EINK_LDFLAGS)
-OBJS+=$(EINK_OBJS)
+#CFLAGS+=$(EINK_CFLAGS)
+#LDFLAGS+=$(EINK_LDFLAGS)
+#OBJS+=$(EINK_OBJS)
 
 all: fbpad
 fbpad.o: conf.h
