@@ -1,6 +1,6 @@
 # efbpad
 
-A prototype terminal that was once seen working on a Kobo Clara BW.
+A prototype terminal for a Kobo Clara BW.
 Type with a bluetooth keyboard.
 
 This is a very immature project, see the long [TODO.md](TODO.md)
