@@ -1,27 +1,24 @@
-Wishlist
+# Improvements
 
-  - User interface improvements
+  - Integration
+    - Kobo UI sometimes draws over the terminal. 
+    - Kobo sleeps and turns off bluetooth and wifi after a timeout.
+      - efbpad should either find a way to kill & restart Kobo UI, or leave it alive and coexist.
+    - Secure NiLuJe's authless ssh config, maybe with public keys.
+
+  - Features
+    - Add a statusbar (battery, brightness, font, orietation, onscreen keyboard, etc).
+      - for the OSK several others (inkvt, koreader) have already done the hard implementation work here.
+    - fbpad.sh should pick the keyboard event device by filtering instead of always /dev/input/event3
     - Replace the logo, right now it is an old gnome-terminal logo desaturated.
-    - On exit it leaves the screen a mess (black)
-    - Add scripts to easily control brightness
-    - Add a mechanism to easily change orientation and regenerate fonts
-    - Add a statusbar (battery, etc). Can be done by limiting fbpad to only touch part of the framebuffer (you can do this with an environment variable, I think)
-    - Attempt to rescue the session if the keyboard dies:
-      - If the keyboard event device goes away, someone should try to find another keyboard or present an onscreen kb to use
-      - The onscreen keyboard from inkvt would fit into kbreader perfectly
-  - fbpad.sh
-    - Actually try to find a keyboard in /dev/input/event##. Currently we dumbly, nonportably pick /dev/input/event3 which "sometimes works on a Clara BW"
-    - Generally just do things right, currently this script is nothing more than a mangled version of the current koreader.sh
+
   - fbpad
-    - Assess whether it would be better to refresh regions intelligently instead of fullscreen every time, implement if so
-    - Restore fbpad hotkey functionality. This could be done using named pipes:
-      - Each mainloop fbpad could do a nonblocking read of a char b from pipe /tmp/kbreader_$uid
-      - If a byte is read the next ttyinput will handle b as if it were a syskey
-      - '\0' means do nothing
-      - In kbreader:
-        - Add a special escape hotkey: if, say, C-` is pressed, then write the next char to /tmp/kbreader_$uid instead of stdout
-        - If C-` is pressed again kbreader would write '\0' to /tmp/kbreader_$uid and write C-` to stdout
+    - Would it perform better to refresh rectangles on the screen instead of always asking for a full refresh?
+    - Restore or remove all the hotkey/multiplexing features from fbpad.
+      We already get most or all of those from tmux. 
+
   - kbreader
-    - An annoyance: after fbpad exits, we need to type a char for our `kbreader | fbpad` chain to terminate (by SIGPIPE)
-    - There is no end to how much better the keyboard interpreter could be. Different locales? Compose key? Numpad? Unicode? 
-    - An onscreen keyboard fallback would be good. inkvt already did the hard work of drawing it and interpreting taps. 
+    - After fbpad exits, we need to type a char for our `kbreader | fbpad` chain to term
+inate (by SIGPIPE)
+    - There is no end to how much better the keyboard interpreter could be.
+      - Different locales? Compose key? Numpad? Unicode? 
