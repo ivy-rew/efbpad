@@ -1,5 +1,5 @@
-fbpad_eink
-build/*
+build/
+KoboRoot.tgz
 
 # Created by https://www.toptal.com/developers/gitignore/api/emacs,git,autotools,c++
 # Edit at https://www.toptal.com/developers/gitignore?templates=emacs,git,autotools,c++
