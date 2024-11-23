@@ -12,11 +12,11 @@ See the long [TODO.md](TODO.md) and the project structure section below.
 
 ## Usage
 
- - Run `make eink` to produce a package.
+ - Run `make` to produce a package.
    This requires a cross-compiling environment.
    NiLuJe's `koxtoolchain` kobo env is the path of least resistance.
  - Install kfmon, nickelmenu, and [NiLuJe's Kobo utilities.](https://www.mobileread.com/forums/showthread.php?t=254214)
- - Merge the contents of `./root/mnt/onboard/` with the kobo's
+ - Either merge the contents of `./root/mnt/onboard/` with the kobo's
    `/mnt/onboard`, or put the produced `KoboRoot.tgz` in `/mnt/onboard/.kobo`
 
 kfmon should create an efbpad entry for the launch script, `efbpad.sh`
