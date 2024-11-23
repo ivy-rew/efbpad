@@ -4,7 +4,7 @@
     - Kobo UI sometimes draws over the terminal. 
     - Kobo sleeps and turns off bluetooth and wifi after a timeout.
       - efbpad should either find a way to kill & restart Kobo UI, or leave it alive and coexist.
-    - Secure NiLuJe's authless ssh config, maybe with public keys.
+    - Secure NiLuJe's authless ssh config, maybe with key auth.
 
   - Features
     - Add a statusbar (battery, brightness, font, orietation, onscreen keyboard, etc).
