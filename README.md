@@ -3,12 +3,11 @@
 A prototype terminal that was once seen working on a Kobo Clara BW.
 Type with a bluetooth keyboard.
 
-This is a very immature project, see the long [TODO.md]
+This is a very immature project, see the long [TODO.md](TODO.md)
 
 <p align="center">
-  <img alt="Light" src="./images/efbpad_1.jpeg" width="45%">
-&nbsp; &nbsp; &nbsp; &nbsp;
-  <img alt="Dark" src="./images/efbpad_2.jpeg" width="45%">
+  <img alt="Wide" src="./images/efbpad_1.jpeg" width="45%">
+  <img alt="Detail" src="./images/efbpad_2.jpeg" width="45%">
 </p>
 
 ## Usage
