@@ -44,8 +44,9 @@ An effort has been made to keep them as decoupled as possible.
  - `fbpad`: A framebuffer terminal emulator by aligrudi.
    We use a very lightly patched version of fbpad: it occasionally
    makes a call to FBInk to refresh the screen.
-    - Here we follow the example of `fbpad-eink`, which took a more
-      integrated approach to refreshes and had a different keyboard system.
+    - Here we follow the example of a similar project, `fbpad-eink`, which
+      took a more integrated approach to refreshes and had a different
+      keyboard system.
  - `kbreader`: Under proper conditions keyboards appear in linux as
    event devices. When you start `fbpad` it waits for chars from stdin.
    `kbreader` acts as the interpreter to translate keystrokes in an event
