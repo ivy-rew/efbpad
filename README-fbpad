@@ -99,3 +99,4 @@ the vimrc file should enable them:
 
   set t_ZH=[3m
   set t_Co=256
+  

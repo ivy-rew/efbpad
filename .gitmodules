@@ -4,3 +4,6 @@
 [submodule "fbpad_mkfn"]
 	path = fbpad_mkfn
 	url = https://github.com/freebendy/fbpad_mkfn
+[submodule "fbpad"]
+	path = fbpad
+	url = https://github.com/aligrudi/fbpad

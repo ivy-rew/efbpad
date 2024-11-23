@@ -5,9 +5,6 @@
 #include "eink.h"
 #include "draw.h"
 
-const FBInkConfig fbpad_fbink_einkConfig = { 0 };
-const struct timespec fbpad_fbink_cooldown_ts = { 0, 50000000 };
-
 static pthread_t fbpad_fbink_refresh_thread;
 static pthread_mutex_t fbpad_fbink_stop_mutex = PTHREAD_MUTEX_INITIALIZER;
 static pthread_mutex_t fbpad_fbink_refresh_mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -47,7 +44,7 @@ void *fbpad_fbink_worker(void *p) {
     pthread_mutex_lock(&fbpad_fbink_refresh_mutex);
     b_refresh = fbpad_fbink_refresh_flag;
     pthread_mutex_unlock(&fbpad_fbink_refresh_mutex);
-    if(b_refresh) { // Ask eink panel to refresh the whole fbpad rectangle
+    if(b_refresh) { 
       pthread_mutex_lock(&fbpad_fbink_refresh_mutex);
       fbpad_fbink_refresh_flag = false;
       pthread_mutex_unlock(&fbpad_fbink_refresh_mutex);
