@@ -15,7 +15,7 @@ This is a very immature project, see the long [TODO.md](TODO.md)
  - Run `make eink` to produce a package.
    This requires a cross-compiling environment.
    NiLuJe's `koxtoolchain` kobo env is the path of least resistance.
- - Install kfmon, nickelmenu, and NiLuJe's Kobo tools (stuff in the .niluje folder)
+ - Install kfmon, nickelmenu, and [NiLuJe's Kobo utilities.](https://www.mobileread.com/forums/showthread.php?t=254214)
  - Merge the contents of `./root/mnt/onboard/` with the kobo's
    `/mnt/onboard`, or put the produced `KoboRoot.tgz` in `/mnt/onboard/.kobo`
 
@@ -52,7 +52,9 @@ Broadly there are 4 components:
     `kbreader /dev/input/event3 | fbpad the_shell_cmd`.
     `kbreader` is spiritually identical to inkvt's onscreen keyboard,
     except it interprets key events rather than soft-keyboard touches.
-  - When fbreader is started it tries to attach to a tmux session (or it creates one if )
+  - When fbreader is started it tries to attach to a tmux session (or
+    it creates one if it doesn't exist). It's using the one from
+    NiLuJe's misc Kobo utilities package.
 
 The included font `regular.tf` was produced using fbpad_mkfn:
 
