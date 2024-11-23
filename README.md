@@ -3,22 +3,32 @@
 A prototype terminal that was once seen working on a Kobo Clara BW.
 Type with a bluetooth keyboard.
 
-## Installation
+## Usage
 
- - First install Nickel
- - Run `make eink` to produce a package. Things are compiled through
-   NiLuJe's `koxtoolchain` kobo env.
- - Include the produced `KoboRoot.tgz` in `/mnt/onboard/.kobo/Kobo`
+ - Run `make eink` to produce a package.
+   This requires a cross-compiling environment.
+   NiLuJe's `koxtoolchain` kobo env is the path of least resistance.
+ - Install kfmon and nickelmenu
+ - Merge the contents of `./root/mnt/onboard/` with the kobo's
+   `/mnt/onboard`, or put the produced `KoboRoot.tgz` in `/mnt/onboard/.kobo`
 
-To uninstall, remove `/mnt/onboard/.adds/fbpad/` and `/mnt/onboard/fonts/tf/`
+kfmon should create an efbpad entry for the launch script, `efbpad.sh`
+efbpad will only start if a bluetooth keyboard is paired and connected at
+`/dev/input/event3`.
+
+For uninstallation, efbpad only creates these files and directories:
+ - `/mnt/onboard/.adds/efbpad`
+ - `/mnt/onboard/fonts/tf`
+ - `/mnt/onboard/efbpad.png` 
+ - `/mnt/onboard/.adds/kfmon/config/efbpad.ini`
 
 ## Project Structure, Credits
-It can't be stated enough, others ran so that fbpad-eink could crawl,
-This project is just other people's work thinly threaded together.
+Others ran so that efbpad could crawl.
+This project is just other people's work threaded together.
 
 Broadly there are 3 components:
  - `efbpad.sh`: Startup/shutdown script, "created" by just paring down
-   KOReader's `koreader.sh`.
+   KOReader's `koreader.sh`. 
  - `fbpad`: A framebuffer terminal emulator.
     Here there are patches calls to NiLuJe's FBInk library to execute
     screen refreshes.

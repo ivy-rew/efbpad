@@ -187,7 +187,7 @@ export KB_INPUT="/dev/input/event3"
 echo 2 > "/sys/class/graphics/fb0/rotate"
 
 # Run fbpad
-if [ -f $KB_INPUT ]; then
+if [ -c $KB_INPUT ]; then
     kbreader $KB_INPUT | fbpad tmux new-session -A -s main
     RETURN_VALUE=$?
 else
@@ -196,7 +196,7 @@ else
 fi
 
 # Restore portrait orientation
-echo 0 > "/sys/class/graphics/fb0/rotate"
+echo 3 > "/sys/class/graphics/fb0/rotate"
 
 # Restore original CPUFreq governor if need be...
 if [ -n "${ORIG_CPUFREQ_GOV}" ]; then
@@ -205,19 +205,9 @@ if [ -n "${ORIG_CPUFREQ_GOV}" ]; then
     # NOTE: Leave DVFS alone, it'll be handled by Nickel if necessary.
 fi
 
+# Restart nickel
 ./nickel.sh &
 exit ${RETURN_VALUE}
-
-if [ "${VIA_NICKEL}" = "true" ]; then
-	./nickel.sh &
-else
-    # if we were called from advboot then we must reboot to go to the menu
-    # NOTE: This is actually achieved by checking if KSM or a KSM-related script is running:
-    #       This might lead to false-positives if you use neither KSM nor advboot to launch KOReader *without nickel running*.
-    if ! pkill -0 -f kbmenu; then
-	/sbin/reboot
-    fi
-fi
 
 exit ${RETURN_VALUE}
 

@@ -29,8 +29,8 @@ install: $(TARGETS)
 	cp ./fbpad_mkfn/mkfn ./build/bin/ 
 
 	mkdir -p ./root/mnt/onboard/.adds/efbpad/
-	cp -r ./onboard/. ./root/mnt/onboard/
-	cp -r ./build/. ./root/mnt/onboard/.adds/efbpad/
+	cp -r --dereference ./onboard/. ./root/mnt/onboard/
+	cp -r --dereference ./build/. ./root/mnt/onboard/.adds/efbpad/
 	tar -C ./root -czf KoboRoot.tgz .
 
 clean:

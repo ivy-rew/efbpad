@@ -1,6 +1,8 @@
 Wishlist
 
   - User interface improvements
+    - Replace the logo, right now it is an old gnome-terminal logo desaturated.
+    - On exit it leaves the screen a mess (black)
     - Add scripts to easily control brightness
     - Add a mechanism to easily change orientation and regenerate fonts
     - Add a statusbar (battery, etc). Can be done by limiting fbpad to only touch part of the framebuffer (you can do this with an environment variable, I think)
