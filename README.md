@@ -15,16 +15,15 @@ See the long [TODO.md](TODO.md) and the project structure section below.
  - Run `make` to produce a package.
    This requires a cross-compiling environment.
    NiLuJe's `koxtoolchain` kobo env is the path of least resistance.
- - Install kfmon, nickelmenu, and [NiLuJe's Kobo utilities.](https://www.mobileread.com/forums/showthread.php?t=254214)
+ - On the Kobo, install kfmon, nickelmenu, and [NiLuJe's Kobo utilities.](https://www.mobileread.com/forums/showthread.php?t=254214)
  - Either merge the contents of `./root/mnt/onboard/` with the kobo's
    `/mnt/onboard`, or put the produced `KoboRoot.tgz` in `/mnt/onboard/.kobo`
-
-kfmon should create an efbpad entry for the launch script, `efbpad.sh`
-efbpad will only start if a bluetooth keyboard is paired and connected at
-`/dev/input/event3`. 
-When efbpad is started, it attaches to an existing tmux session or starts 
-one if none exist. When tmux closes or the keyboard is disconnected, then
-efbpad shuts down. 
+   After this kfmon should create a nickelmenu entry `efbpad`.
+ - efbpad will only start if a bluetooth keyboard is paired and connected at
+  `/dev/input/event3`.
+ - When efbpad is started, it attaches to an existing tmux session or starts 
+   one if none exist. When tmux closes or the keyboard is disconnected,
+   efbpad shuts down. 
 
 For uninstallation, efbpad only creates these files and directories:
  - `/mnt/onboard/.adds/efbpad`
