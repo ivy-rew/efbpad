@@ -48,13 +48,15 @@ An effort has been made to keep them as decoupled as possible.
       took a more integrated approach to refreshes and had a different
       keyboard system.
  - `kbreader`: Under proper conditions keyboards appear in linux as
-   event devices. When you start `fbpad` it waits for chars from stdin.
-   `kbreader` acts as the interpreter to translate keystrokes in an event
-   device into strings printed to stdout. 
-   We get `fbpad` to listen to the keyboard by piping kbreader into it as so:
+   event devices. `kbreader` acts as the interpreter to translate keystrokes
+   coming out of an event device into strings printed to stdout.
+   This is a standalone utility.
+   When you start `fbpad` it waits for chars from stdin. We get `fbpad`
+   to listen to the keyboard by piping kbreader into it as so:
    `kbreader /dev/input/event3 | fbpad the_shell`.
     - `kbreader` is spiritually identical to the onscreen keyboard in
-      a similar project `inkvt`, except our event device is not a touchscreen,
+      a similar project `inkvt`, except our keyboard reader is decoupled
+      from the rest of the software, our event device is not a touchscreen,
       and we use fbpad instead of a bespoke VT.
  - `efbpad.sh`: Script that does efbpad startup & shutdown.
 
