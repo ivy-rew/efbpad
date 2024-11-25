@@ -1,4 +1,4 @@
-TARGETS = armcheck libfbink fbpad/fbpad kbreader/kbreader fbpad_mkfn/mkfn install
+TARGETS = libfbink fbpad/fbpad kbreader/kbreader fbpad_mkfn/mkfn install
 
 all: $(TARGETS)
 
