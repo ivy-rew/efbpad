@@ -1,10 +1,8 @@
 # Improvements
 
   - Integration
-    - Kobo UI sometimes draws over the terminal. 
-    - Kobo sleeps and turns off bluetooth and wifi after a timeout.
-      - efbpad should either find a way to kill & restart Kobo UI, or leave it alive and coexist.
-    - Secure NiLuJe's authless ssh config, maybe with key auth.
+    - Kobo UI sometimes draws over the terminal, sleeps and turns off bluetooth and wifi after a timeout.
+    - Eliminate dependence on NiLuJe's utilities package (i.e. just compile tmux)
 
   - Features
     - Add a statusbar (battery, brightness, font, orietation, onscreen keyboard, etc).
@@ -18,7 +16,18 @@
       We already get most or all of that functionality from tmux. 
 
   - kbreader
-    - After fbpad exits, we need to type a char for our `kbreader | fbpad` pipe to term
-inate (by SIGPIPE)
-    - There is no end to how much better the keyboard interpreter could be.
+    - After fbpad exits, we need to type a char for our `kbreader | fbpad` pipe to die (by SIGPIPE)
+    - There is no end to how much better the interpreter could be.
       - Different locales? Compose key? Numpad? Unicode? 
+
+The likely path forward is to change this into an extension of koreader. 
+This solves the nasty integration problem and creates others:
+  - Need to start up and manage the Clara BW's bluetooth from inside koreader
+  - koreader's already got terminal.koplugin... 
+    - Is it responsive? If so consider dropping fbpad
+    - Add option to hide OSK
+  - If we stay with fbpad...
+    - Get fbpad to draw on a subset of the screen
+    - Link to koreader's fbink lib
+    - Add lua fbpad manager
+    - Change glyph rendering from fbpad's obscure tinyfont format to koreader's freetype2
