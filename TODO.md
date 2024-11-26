@@ -23,6 +23,7 @@
 The likely path forward is to change this into an extension of koreader. 
 This solves the nasty integration problem and creates others:
   - Need to start up and manage the Clara BW's bluetooth from inside koreader
+    - Pieces of bluez are recognizable on the kobo. Hopefully it's enough to just build a stock version of `bluetoothctl`. 
   - koreader's already got terminal.koplugin... 
     - Is it responsive? If so consider dropping fbpad
     - Add option to hide OSK
